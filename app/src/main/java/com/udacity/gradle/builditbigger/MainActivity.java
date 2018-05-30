@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new EndpointsAsyncTask(this).execute("Manfred");
+        new EndpointsAsyncTask(this).execute("Michael");
     }
 
 
