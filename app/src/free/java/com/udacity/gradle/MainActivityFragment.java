@@ -41,11 +41,12 @@ public class MainActivityFragment extends Fragment implements AsyncTaskResult {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
         return root;
     }
 
     public void tellJoke() {
-        new EndpointsAsyncTask(getActivity(), this).execute("/");
+        new EndpointsAsyncTask(getActivity(), this).execute("Michael");
     }
 
     @Override

@@ -6,14 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskResult {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        new EndpointsAsyncTask(this, this).execute("Michael");
     }
 
 
@@ -39,9 +37,4 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskResult {
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    public void onResult(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
 }
