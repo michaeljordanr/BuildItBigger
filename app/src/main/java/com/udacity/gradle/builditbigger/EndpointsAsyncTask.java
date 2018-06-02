@@ -17,8 +17,11 @@ public class EndpointsAsyncTask extends AsyncTask<String, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
 
-    public EndpointsAsyncTask(Context context){
+    private AsyncTaskResult callback;
+
+    public EndpointsAsyncTask(Context context, AsyncTaskResult callback){
         this.context = context;
+        this.callback = callback;
     }
 
     @Override
@@ -49,6 +52,6 @@ public class EndpointsAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Toast.makeText(context, s, Toast.LENGTH_LONG).show();
+        callback.onResult(s);
     }
 }

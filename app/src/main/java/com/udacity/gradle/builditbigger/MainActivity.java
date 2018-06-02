@@ -1,24 +1,19 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 
-import com.michaeljordanr.javajokes.Joker;
-import com.michaeljordanr.jokeactivity.JokeActivity;
-
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AsyncTaskResult {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new EndpointsAsyncTask(this).execute("Michael");
+        new EndpointsAsyncTask(this, this).execute("Michael");
     }
 
 
@@ -44,12 +39,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-        Joker joker = new Joker();
-        Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra(JokeActivity.JOKE_PARAM, joker.getJoke());
-        startActivity(intent);
+
+    @Override
+    public void onResult(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
-
-
 }
