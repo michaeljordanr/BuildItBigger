@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Pair;
@@ -16,12 +17,24 @@ import java.io.IOException;
 public class EndpointsAsyncTask extends AsyncTask<String, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
+    private ProgressDialog progressDialog;
 
     private AsyncTaskResult callback;
 
     public EndpointsAsyncTask(Context context, AsyncTaskResult callback){
         this.context = context;
         this.callback = callback;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = new ProgressDialog(context, R.style.Progress_Dialog_Theme);
+        progressDialog.setTitle(context.getString(R.string.loading));
+        progressDialog.setMessage(context.getString(R.string.msg_loading));
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
     }
 
     @Override
@@ -52,6 +65,7 @@ public class EndpointsAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
+        progressDialog.dismiss();
         callback.onResult(s);
     }
 }
