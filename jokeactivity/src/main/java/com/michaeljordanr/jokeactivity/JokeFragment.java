@@ -30,7 +30,8 @@ public class JokeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null &&
+                getArguments().getString(JokeActivity.JOKE_PARAM) != null) {
             jokeString = getArguments().getString(JokeActivity.JOKE_PARAM);
         }
 

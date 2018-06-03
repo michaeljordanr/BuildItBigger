@@ -43,11 +43,6 @@ public class AsyncTaskInstrumentedTest {
     @Test
     public void asyncTaskTest() {
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         ViewInteraction appCompatButton = onView(
                 allOf(withText("Tell a Joke"),
@@ -56,11 +51,6 @@ public class AsyncTaskInstrumentedTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         ViewInteraction textView = onView(
                 allOf(withId(R.id.tv_joke), isDisplayed()));
